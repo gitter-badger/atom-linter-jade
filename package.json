@@ -1,0 +1,23 @@
+{
+  "name": "linter-jade",
+  "main": "./lib/jade",
+  "version": "0.0.0",
+  "description": "Basic Jade linter",
+  "keywords": [],
+  "repository": "https://github.com/zyklus/atom-linter-jade",
+  "license": "Unlicense",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "jade": "^1.11.0",
+    "loophole": "^1.1.0"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  }
+}
