@@ -3,7 +3,7 @@
   "main": "./lib/jade",
   "version": "0.1.1",
   "description": "Basic Jade linter",
-  "keywords": [],
+  "keywords": ["jade", "lint", "linter"],
   "repository": "https://github.com/zyklus/atom-linter-jade",
   "license": "Unlicense",
   "engines": {
