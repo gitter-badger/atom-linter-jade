@@ -1,13 +1,7 @@
 # linter-jade package
 
 A very basic jade "linter" that just tries to compile the file and shows the first error.  But
-it's better than nothing ;)  It should be noted that often the first error is a runtime error
-resulting from the lack of a defined varaible, so in order to properly "lint" a file, you should set
-undefined variables at the start of your file, e.g.:
-
-```jade
-- variable || (variable = [])
-```
+it's better than nothing ;)
 
 ## Installation
 Linter package must be installed in order to use this plugin. If Linter is not installed, please
