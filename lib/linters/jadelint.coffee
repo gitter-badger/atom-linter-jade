@@ -16,7 +16,7 @@ module.exports = ['useJadeLint', (textEditor) ->
   return new Promise (resolve, reject) ->
     resolve (allowUnsafeEval -> allowUnsafeNewFunction ->
       linter = new Linter(filePath, src)
-      linter.lint().map(
+      linter.lint().filter((err) -> err.level != 'ignore').map(
         (err) ->
           {
             file     : err.filename
