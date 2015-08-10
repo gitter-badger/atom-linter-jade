@@ -1,6 +1,7 @@
 allLinters = []
 
 allLinters.push(require('./linters/jade-lint'))     # jade-lint
+allLinters.push(require('./linters/jadelint'))      # jadelint
 allLinters.push(require('./linters/jade-compiler')) # default jade compiler
 
 flattenArray = (ary, levels=1) ->
