@@ -1,13 +1,4 @@
-path = require('path')
-
-{allowUnsafeEval, allowUnsafeNewFunction} = require 'loophole'
-
-jade           = null
-jadeLinter     = null
-jadeLintConfig = null
-jadeLinterInit = false
-
-allLinters     = []
+allLinters = []
 
 allLinters.push(require('./linters/jade-lint'))     # jade-lint
 allLinters.push(require('./linters/jade-compiler')) # default jade compiler

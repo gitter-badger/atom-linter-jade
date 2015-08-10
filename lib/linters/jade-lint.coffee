@@ -1,17 +1,24 @@
+{allowUnsafeEval, allowUnsafeNewFunction} = require 'loophole'
+
+path       = require('path')
+
+lintConfig = null
+linter     = null
+linterInit = false
+
 module.exports = ['useJadeDashLint', (textEditor) ->
-  if !jadeLinterInit
-    jade           = allowUnsafeNewFunction -> require('jade')
-    jadeLinter     = new (require('jade-lint'))
-    jadeLinterInit = true
+  if !linterInit
+    linter     = new (require('jade-lint'))
+    linterInit = true
 
   filePath       = textEditor.getPath()
-  jadeLintConfig = require('jade-lint/lib/config-file') # Don't like this, but there isn't a good
+  lintConfig = require('jade-lint/lib/config-file') # Don't like this, but there isn't a good
                                                         # interface at the moment
-  jadeLinter.configure(jadeLintConfig.load(undefined, path.dirname(filePath)))
+  linter.configure(lintConfig.load(undefined, path.dirname(filePath)))
 
   return new Promise (resolve, reject) ->
     resolve (allowUnsafeEval -> allowUnsafeNewFunction ->
-      jadeLinter.checkString(textEditor.getText(), filePath)).map(
+      linter.checkString(textEditor.getText(), filePath)).map(
         (err) ->
           {
             file     : err.filename

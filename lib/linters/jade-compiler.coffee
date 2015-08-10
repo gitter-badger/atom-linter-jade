@@ -1,4 +1,13 @@
+{allowUnsafeEval, allowUnsafeNewFunction} = require 'loophole'
+
+jade       = null
+linterInit = false
+
 module.exports = ['useJadeCompiler', (textEditor) ->
+  if !linterInit
+    jade       = allowUnsafeNewFunction -> require('jade')
+    linterInit = true
+
   thisFile = textEditor.getPath()
 
   return new Promise (resolve, reject) ->
