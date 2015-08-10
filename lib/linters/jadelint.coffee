@@ -10,8 +10,6 @@ module.exports = ['useJadeLint', (textEditor) ->
     Linter     = require('jadelint/target/Linter')
     linterInit = true
 
-  # console.log('Linter=', Linter)
-
   filePath = textEditor.getPath()
   src      = textEditor.getText()
 
