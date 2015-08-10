@@ -7,10 +7,10 @@ jadeLinter     = null
 jadeLintConfig = null
 jadeLinterInit = false
 
-linters = []
+allLinters     = []
 
 # Jade-Lint
-linters.push((textEditor) ->
+allLinters.push(['useJadeDashLint', (textEditor) ->
   if !jadeLinterInit
     jade           = allowUnsafeNewFunction -> require('jade')
     jadeLinter     = new (require('jade-lint'))
@@ -34,10 +34,10 @@ linters.push((textEditor) ->
             sameFile : true
           }
     )
-)
+])
 
 # Standard Jade Library
-linters.push((textEditor) ->
+allLinters.push(['useJadeCompiler', (textEditor) ->
   thisFile = textEditor.getPath()
 
   return new Promise (resolve, reject) ->
@@ -60,9 +60,9 @@ linters.push((textEditor) ->
       # err on line 3
       if !fileLine.length
         fileLine = /(.*?) on line (\d+)$/.exec(errLines[0]) || []
-        fileName = thisFile;
-        lineNum  = fileLine[2];
-        message  = fileLine[1];
+        fileName = thisFile
+        lineNum  = fileLine[2]
+        message  = fileLine[1]
 
       # ErrMessage (line:col)
       # js-compiler errors with non-relevant line/column info
@@ -80,7 +80,7 @@ linters.push((textEditor) ->
         message  : message
         sameFile : sameFile
       }])
-)
+])
 
 flattenArray = (ary, levels=1) ->
   [1..levels].forEach(-> ary = [].concat.apply([], ary))
@@ -93,6 +93,10 @@ LinterJade =
   lintOnFly     : true
 
   lint: (textEditor) ->
+    linters = allLinters
+      .filter((linter) => @config(linter[0]))
+      .map((linter) -> linter[1])
+
     return new Promise (resolve, reject) ->
       Promise.all(linters.map((linterFn) -> linterFn(textEditor))).then(->
         # get a straight list of all errors
@@ -101,8 +105,10 @@ LinterJade =
         # filter out duplicate errors since we're using two different linters.  First one wins
         errs = errs.filter((err, ix, errs) ->
           for i in [0...ix]
-            if (errs[i].line == err.line) && (errs[i].file == err.file) && (errs[i].message = err.message)
-              return false
+            if (errs[i].line == err.line) &&
+               (errs[i].file == err.file) &&
+               (errs[i].message = err.message)
+                 return false
 
           return true
         )
