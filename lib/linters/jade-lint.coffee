@@ -11,9 +11,9 @@ module.exports = ['useJadeDashLint', (textEditor) ->
     linter     = new (require('jade-lint'))
     linterInit = true
 
-  filePath       = textEditor.getPath()
+  filePath   = textEditor.getPath()
   lintConfig = require('jade-lint/lib/config-file') # Don't like this, but there isn't a good
-                                                        # interface at the moment
+                                                    # interface at the moment
   linter.configure(lintConfig.load(undefined, path.dirname(filePath)))
 
   return new Promise (resolve, reject) ->
