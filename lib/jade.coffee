@@ -12,10 +12,10 @@ module.exports =
       default     : true
       description : "Use jade-lint linter (.jade-lintrc files)"
       order       : 2
-    # useJadeLint:
-    #   type        : 'boolean'
-    #   default     : true
-    #   description : "Use jadelint linter (.jadelintrc files)"
-    #   order       : 3
+    useJadeLint:
+      type        : 'boolean'
+      default     : true
+      description : "Use jadelint linter (.jadelintrc files)"
+      order       : 3
 
   provideLinter: -> LinterJadeProvider

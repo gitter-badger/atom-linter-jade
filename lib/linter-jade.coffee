@@ -37,7 +37,7 @@ LinterJade =
 
         # convert to appropriate format
         errs = errs.map((err) ->
-          type     : 'Error'
+          type     : err.type || 'Error'
           text     : err.message + (if err.code then ' (' + err.code + ')' else '')
           filePath : err.file
           range    : if err.line then [
