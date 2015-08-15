@@ -1,5 +1,7 @@
 # linter-jade package
 
+[![Join the chat at https://gitter.im/zyklus/atom-linter-jade](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zyklus/atom-linter-jade?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A jade linter that uses three linters (because at the moment they provide different errors and
 warnings :/)
 
