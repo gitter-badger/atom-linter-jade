@@ -8,7 +8,7 @@
     "lint",
     "linter"
   ],
-  "repository": "https://github.com/zyklus/atom-linter-jade",
+  "repository": "https://github.com/gitter-badger/atom-linter-jade",
   "license": "Unlicense",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
